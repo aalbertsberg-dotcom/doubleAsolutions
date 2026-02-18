@@ -239,6 +239,17 @@ const DoubleASolutions = () => {
           .mobile-menu.open {
             transform: translateX(0);
           }
+          
+          .btn-primary, .btn-secondary {
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            width: 100%;
+            max-width: 200px;
+          }
+          
+          section {
+            padding: 4rem 1rem !important;
+          }
         }
         
         @media (min-width: 769px) {
@@ -252,6 +263,21 @@ const DoubleASolutions = () => {
           
           .mobile-menu {
             display: none !important;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          h1 {
+            font-size: 2rem !important;
+          }
+          
+          h2 {
+            font-size: 1.75rem !important;
+          }
+          
+          .btn-primary, .btn-secondary {
+            font-size: 0.85rem;
+            padding: 0.7rem 1.2rem;
           }
         }
       `}</style>
@@ -368,24 +394,26 @@ const DoubleASolutions = () => {
           </div>
           
           <h1 style={{
-            fontSize: 'clamp(2.5rem, 8vw, 5rem)',
+            fontSize: 'clamp(2rem, 6vw, 5rem)',
             fontWeight: '700',
             marginBottom: '1.5rem',
-            lineHeight: '1.1',
+            lineHeight: '1.2',
             background: 'linear-gradient(135deg, #e8edf4, #06b6d4)',
             WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent'
+            WebkitTextFillColor: 'transparent',
+            padding: '0 1rem'
           }}>
-            Microsoft 365.<br/>Security. Solutions.
+            Microsoft 365.<br/>Security.<br/>Solutions.
           </h1>
           
           <p style={{
-            fontSize: '1.25rem',
+            fontSize: 'clamp(1rem, 4vw, 1.25rem)',
             color: '#94a3b8',
-            marginBottom: '3rem',
+            marginBottom: '2rem',
             lineHeight: '1.6',
             maxWidth: '600px',
-            margin: '0 auto 3rem'
+            margin: '0 auto 2rem',
+            padding: '0 1.5rem'
           }}>
             Expert IT consulting for Microsoft 365, security, email systems, and infrastructure. From strategy to implementation, I deliver reliable solutions for your business.
           </p>
@@ -402,11 +430,12 @@ const DoubleASolutions = () => {
           {/* Stats */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-            gap: '2rem',
-            marginTop: '5rem',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '1rem',
+            marginTop: '4rem',
             maxWidth: '700px',
-            margin: '5rem auto 0'
+            margin: '4rem auto 0',
+            padding: '0 1rem'
           }}>
             {[
               { number: '15+', label: 'Years Experience' },
@@ -415,14 +444,14 @@ const DoubleASolutions = () => {
             ].map((stat, i) => (
               <div key={i} style={{ textAlign: 'center', animationDelay: `${i * 0.1}s` }} className="slide-up">
                 <div style={{
-                  fontSize: '2.5rem',
+                  fontSize: 'clamp(1.5rem, 5vw, 2.5rem)',
                   fontWeight: '700',
                   color: '#06b6d4',
                   fontFamily: '"JetBrains Mono", monospace'
                 }}>
                   {stat.number}
                 </div>
-                <div style={{ color: '#94a3b8', fontSize: '0.875rem', marginTop: '0.5rem' }}>
+                <div style={{ color: '#94a3b8', fontSize: 'clamp(0.7rem, 2vw, 0.875rem)', marginTop: '0.5rem' }}>
                   {stat.label}
                 </div>
               </div>
