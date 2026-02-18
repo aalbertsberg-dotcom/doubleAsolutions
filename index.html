@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Double-A Solutions | IT Consulting & Microsoft 365 Experts</title>
+    <meta name="description" content="Expert IT consulting for Microsoft 365, security, email systems, and website development. Professional solutions for your business.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- React and Babel from CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Outfit', 'Segoe UI', sans-serif;
+            background: #0a0e27;
+            color: #e8edf4;
+            overflow-x: hidden;
+        }
+        
+        .tech-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(6, 182, 212, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .glow-effect {
+            position: relative;
+        }
+        
+        .glow-effect::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        .slide-up {
+            animation: slideUp 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        @keyframes slideUp {
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+        }
+        
+        .tech-border {
+            position: relative;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+        
+        .tech-border::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(45deg, rgba(6, 182, 212, 0.5), rgba(30, 58, 138, 0.5));
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+        
+        .tech-border:hover::before {
+            opacity: 1;
+        }
+        
+        .pulse-dot {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .nav-link {
+            position: relative;
+            color: #e8edf4;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #06b6d4;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link:hover {
+            color: #06b6d4;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #06b6d4, #0284c7);
+            color: white;
+            border: none;
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(6, 182, 212, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #06b6d4;
+            border: 2px solid #06b6d4;
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(6, 182, 212, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        input, textarea {
+            background: rgba(30, 58, 138, 0.2);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            color: #e8edf4;
+            padding: 0.875rem;
+            border-radius: 8px;
+            width: 100%;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #06b6d4;
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none !important;
+            }
+            
+            .mobile-menu-btn {
+                display: block !important;
+            }
+            
+            .mobile-menu {
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 250px;
+                background: #0f1535;
+                transform: translateX(100%);
+                transition: transform 0.3s;
+                z-index: 1000;
+                padding: 2rem;
+                box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
+            }
+            
+            .mobile-menu.open {
+                transform: translateX(0);
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .desktop-nav {
+                display: flex !important;
+            }
+            
+            .mobile-menu-btn {
+                display: none !important;
+            }
+            
+            .mobile-menu {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        
+        // Lucide icon components
+        const Icon = ({ name, size = 24, ...props }) => {
+            useEffect(() => {
+                lucide.createIcons();
+            }, []);
+            return React.createElement('i', { 
+                'data-lucide': name, 
+                ...props,
+                style: { width: size, height: size }
+            });
+        };
+        
+        const DoubleASolutions = () => {
+            const [isMenuOpen, setIsMenuOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+            const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+            
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 50);
+                window.addEventListener('scroll', handleScroll);
+                lucide.createIcons();
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+            
+            useEffect(() => {
+                lucide.createIcons();
+            });
+            
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                alert('Thank you! I will get back to you soon.');
+                setFormData({ name: '', email: '', message: '' });
+            };
+            
+            const services = [
+                {
+                    icon: 'cloud',
+                    title: 'Microsoft 365 Consulting',
+                    description: 'Complete Microsoft 365 administration, tenant setup, migrations, and optimization. From Exchange Online to Teams, SharePoint to Azure AD - expert guidance for your cloud journey.',
+                    features: ['Tenant Management', 'Email Migration', 'Teams & SharePoint', 'Hybrid Configuration']
+                },
+                {
+                    icon: 'mail',
+                    title: 'Email Systems & Security',
+                    description: 'Email infrastructure design, implementation, and security. Exchange Server, Exchange Online, mail flow optimization, and protection against threats.',
+                    features: ['Exchange Administration', 'Mail Flow & Security', 'Spam & Malware Protection', 'Email Archiving']
+                },
+                {
+                    icon: 'globe',
+                    title: 'Website Design & Development',
+                    description: 'Professional website design, development, and maintenance. From landing pages to full business websites - modern, responsive, and optimized for your needs.',
+                    features: ['Custom Website Design', 'Responsive Development', 'Website Updates', 'Performance Optimization']
+                },
+                {
+                    icon: 'database',
+                    title: 'IT Strategy & Advisory',
+                    description: 'Strategic IT planning, infrastructure assessments, and project management. Get expert advice on technology decisions, budgets, and implementation roadmaps.',
+                    features: ['Infrastructure Planning', 'Technology Assessment', 'Project Management', 'Budget Planning']
+                },
+                {
+                    icon: 'code',
+                    title: 'Automation & Scripting',
+                    description: 'PowerShell automation for Active Directory, Microsoft 365, and system administration. Streamline operations, reduce errors, and save time with custom scripts.',
+                    features: ['PowerShell Development', 'AD Automation', 'Report Generation', 'Task Scheduling']
+                }
+            ];
+            
+            const skills = [
+                'Microsoft 365 Administration',
+                'Exchange Server & Exchange Online',
+                'Active Directory & Azure AD',
+                'Security & Compliance',
+                'Website Design & Development',
+                'Email Systems & Mail Flow',
+                'PowerShell Scripting & Automation',
+                'IT Strategy & Planning'
+            ];
+            
+            const stats = [
+                { number: '15+', label: 'Years Experience' },
+                { number: '100%', label: 'Client Satisfaction' },
+                { number: 'M365', label: 'Certified Expert' }
+            ];
+            
+            return (
+                <div>
+                    {/* Background Grid */}
+                    <div className="tech-grid"></div>
+                    
+                    {/* Navigation */}
+                    <nav style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        background: scrolled ? 'rgba(10, 14, 39, 0.95)' : 'transparent',
+                        backdropFilter: scrolled ? 'blur(10px)' : 'none',
+                        borderBottom: scrolled ? '1px solid rgba(6, 182, 212, 0.2)' : 'none',
+                        padding: '1.5rem 2rem',
+                        transition: 'all 0.3s',
+                        zIndex: 100
+                    }}>
+                        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                                <img src="logo.svg" alt="Double-A Solutions" style={{ width: '40px', height: '40px' }} />
+                                <span style={{ fontSize: '1.5rem', fontWeight: '700' }}>Double-A Solutions</span>
+                            </div>
+                            
+                            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+                                <div className="desktop-nav" style={{ display: 'flex', gap: '2rem' }}>
+                                    <a href="#services" className="nav-link">Services</a>
+                                    <a href="#about" className="nav-link">About</a>
+                                    <a href="#contact" className="nav-link">Contact</a>
+                                </div>
+                                <button 
+                                    className="mobile-menu-btn"
+                                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                    style={{
+                                        display: 'none',
+                                        background: 'transparent',
+                                        border: 'none',
+                                        color: '#06b6d4',
+                                        cursor: 'pointer',
+                                        fontSize: '1.5rem'
+                                    }}
+                                >
+                                    {isMenuOpen ? '✕' : '☰'}
+                                </button>
+                            </div>
+                        </div>
+                    </nav>
+                    
+                    {/* Mobile Menu */}
+                    <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '4rem' }}>
+                            <a href="#services" className="nav-link" onClick={() => setIsMenuOpen(false)}>Services</a>
+                            <a href="#about" className="nav-link" onClick={() => setIsMenuOpen(false)}>About</a>
+                            <a href="#contact" className="nav-link" onClick={() => setIsMenuOpen(false)}>Contact</a>
+                        </div>
+                    </div>
+                    
+                    {/* Hero Section */}
+                    <section className="glow-effect" style={{
+                        minHeight: '100vh',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        textAlign: 'center',
+                        padding: '2rem',
+                        position: 'relative',
+                        zIndex: 1
+                    }}>
+                        <div style={{ maxWidth: '900px' }} className="fade-in">
+                            <div style={{ 
+                                display: 'inline-block',
+                                padding: '0.5rem 1.5rem',
+                                background: 'rgba(6, 182, 212, 0.1)',
+                                border: '1px solid rgba(6, 182, 212, 0.3)',
+                                borderRadius: '50px',
+                                marginBottom: '2rem',
+                                fontSize: '0.875rem',
+                                fontWeight: '600',
+                                color: '#06b6d4',
+                                fontFamily: '"JetBrains Mono", monospace'
+                            }}>
+                                <span className="pulse-dot" style={{ display: 'inline-block', width: '8px', height: '8px', background: '#06b6d4', borderRadius: '50%', marginRight: '0.5rem' }}></span>
+                                IT CONSULTING & SOLUTIONS
+                            </div>
+                            
+                            <h1 style={{
+                                fontSize: 'clamp(2.5rem, 8vw, 5rem)',
+                                fontWeight: '700',
+                                marginBottom: '1.5rem',
+                                lineHeight: '1.1',
+                                background: 'linear-gradient(135deg, #e8edf4, #06b6d4)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent'
+                            }}>
+                                Microsoft 365.<br/>Security. Solutions.
+                            </h1>
+                            
+                            <p style={{
+                                fontSize: '1.25rem',
+                                color: '#94a3b8',
+                                marginBottom: '3rem',
+                                lineHeight: '1.6',
+                                maxWidth: '600px',
+                                margin: '0 auto 3rem'
+                            }}>
+                                Expert IT consulting for Microsoft 365, security, email systems, and infrastructure. From strategy to implementation, I deliver reliable solutions for your business.
+                            </p>
+                            
+                            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                                <button className="btn-primary" onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}>
+                                    Get Started →
+                                </button>
+                                <button className="btn-secondary" onClick={() => document.getElementById('services').scrollIntoView({ behavior: 'smooth' })}>
+                                    View Services
+                                </button>
+                            </div>
+                            
+                            {/* Stats */}
+                            <div style={{
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+                                gap: '2rem',
+                                marginTop: '5rem',
+                                maxWidth: '700px',
+                                margin: '5rem auto 0'
+                            }}>
+                                {stats.map((stat, i) => (
+                                    <div key={i} style={{ textAlign: 'center' }} className="slide-up">
+                                        <div style={{
+                                            fontSize: '2.5rem',
+                                            fontWeight: '700',
+                                            color: '#06b6d4',
+                                            fontFamily: '"JetBrains Mono", monospace'
+                                        }}>
+                                            {stat.number}
+                                        </div>
+                                        <div style={{ color: '#94a3b8', fontSize: '0.875rem', marginTop: '0.5rem' }}>
+                                            {stat.label}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+                    
+                    {/* Services Section */}
+                    <section id="services" style={{
+                        padding: '8rem 2rem',
+                        background: 'rgba(15, 21, 53, 0.5)',
+                        position: 'relative',
+                        zIndex: 1
+                    }}>
+                        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+                            <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
+                                <h2 style={{
+                                    fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+                                    fontWeight: '700',
+                                    marginBottom: '1rem'
+                                }}>
+                                    Services
+                                </h2>
+                                <p style={{ color: '#94a3b8', fontSize: '1.125rem', maxWidth: '600px', margin: '0 auto' }}>
+                                    Specialized IT services backed by real-world enterprise experience
+                                </p>
+                            </div>
+                            
+                            <div style={{
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                                gap: '2rem'
+                            }}>
+                                {services.map((service, i) => (
+                                    <div key={i} className="tech-border hover-lift" style={{
+                                        background: 'rgba(30, 58, 138, 0.1)',
+                                        padding: '2.5rem',
+                                        borderRadius: '16px'
+                                    }}>
+                                        <div style={{
+                                            width: '60px',
+                                            height: '60px',
+                                            background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(2, 132, 199, 0.2))',
+                                            borderRadius: '12px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            color: '#06b6d4',
+                                            marginBottom: '1.5rem'
+                                        }}>
+                                            <Icon name={service.icon} size={32} />
+                                        </div>
+                                        
+                                        <h3 style={{
+                                            fontSize: '1.5rem',
+                                            fontWeight: '600',
+                                            marginBottom: '1rem'
+                                        }}>
+                                            {service.title}
+                                        </h3>
+                                        
+                                        <p style={{
+                                            color: '#94a3b8',
+                                            marginBottom: '1.5rem',
+                                            lineHeight: '1.6'
+                                        }}>
+                                            {service.description}
+                                        </p>
+                                        
+                                        <ul style={{ listStyle: 'none', padding: 0 }}>
+                                            {service.features.map((feature, j) => (
+                                                <li key={j} style={{
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '0.75rem',
+                                                    marginBottom: '0.75rem',
+                                                    color: '#e8edf4',
+                                                    fontSize: '0.875rem'
+                                                }}>
+                                                    <Icon name="check-circle" size={16} style={{ color: '#06b6d4', flexShrink: 0 }} />
+                                                    {feature}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))}
+                            </div>
+                            
+                            <div style={{ textAlign: 'center', marginTop: '4rem' }}>
+                                <button className="btn-primary" onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}>
+                                    Request a Consultation
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    {/* About Section */}
+                    <section id="about" style={{
+                        padding: '8rem 2rem',
+                        background: 'rgba(15, 21, 53, 0.5)',
+                        position: 'relative',
+                        zIndex: 1
+                    }}>
+                        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+                            <div style={{
+                                display: 'grid',
+                                gridTemplateColumns: window.innerWidth > 768 ? '1fr 1fr' : '1fr',
+                                gap: '4rem',
+                                alignItems: 'center'
+                            }}>
+                                <div>
+                                    <h2 style={{
+                                        fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+                                        fontWeight: '700',
+                                        marginBottom: '1.5rem'
+                                    }}>
+                                        Enterprise Expertise.<br/>Personal Service.
+                                    </h2>
+                                    <p style={{
+                                        color: '#94a3b8',
+                                        fontSize: '1.125rem',
+                                        lineHeight: '1.8',
+                                        marginBottom: '1.5rem'
+                                    }}>
+                                        With 15 years of experience managing large-scale Microsoft environments, I offer independent IT consulting for businesses that need more than just "support." Whether it's strategic planning, security, or cloud implementation, I provide the technical leadership necessary to keep your business secure and efficient.
+                                    </p>
+                                    
+                                    <div style={{
+                                        background: 'rgba(6, 182, 212, 0.05)',
+                                        border: '1px solid rgba(6, 182, 212, 0.2)',
+                                        borderRadius: '12px',
+                                        padding: '2rem',
+                                        marginBottom: '2rem'
+                                    }}>
+                                        <h3 style={{
+                                            fontSize: '1.25rem',
+                                            fontWeight: '600',
+                                            color: '#06b6d4',
+                                            marginBottom: '1rem'
+                                        }}>
+                                            Meet the Expert
+                                        </h3>
+                                        <p style={{
+                                            fontSize: '1rem',
+                                            fontWeight: '600',
+                                            marginBottom: '1rem',
+                                            color: '#e8edf4'
+                                        }}>
+                                            Andy Aalbertsberg | Founder & Lead Consultant
+                                        </p>
+                                        <p style={{
+                                            color: '#94a3b8',
+                                            fontSize: '1rem',
+                                            lineHeight: '1.8',
+                                            marginBottom: '1rem'
+                                        }}>
+                                            I'm a hands-on technical lead who believes IT should be a business driver, not a bottleneck. With over 15 years of experience in the Microsoft ecosystem—from small-scale migrations to enterprise-level infrastructure—I focus on delivering high-performance solutions that are secure, scalable, and easy to manage.
+                                        </p>
+                                        <p style={{
+                                            color: '#94a3b8',
+                                            fontSize: '1rem',
+                                            lineHeight: '1.8'
+                                        }}>
+                                            When I'm not hardening environments or optimizing cloud workflows, you'll usually find me at my triple-monitor setup, staying current with the latest tech trends or managing my own digital workspace with the same precision I bring to my clients.
+                                        </p>
+                                    </div>
+                                    
+                                    <button className="btn-primary" onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}>
+                                        Work With Me
+                                    </button>
+                                </div>
+                                
+                                <div style={{
+                                    background: 'rgba(30, 58, 138, 0.1)',
+                                    border: '1px solid rgba(6, 182, 212, 0.3)',
+                                    borderRadius: '16px',
+                                    padding: '2.5rem'
+                                }}>
+                                    <h3 style={{ fontSize: '1.5rem', fontWeight: '600', marginBottom: '2rem' }}>
+                                        Core Expertise
+                                    </h3>
+                                    {skills.map((skill, i) => (
+                                        <div key={i} style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '0.75rem',
+                                            marginBottom: '1rem',
+                                            padding: '0.75rem',
+                                            background: i % 2 === 0 ? 'rgba(6, 182, 212, 0.05)' : 'transparent',
+                                            borderRadius: '8px'
+                                        }}>
+                                            <Icon name="check-circle" size={20} style={{ color: '#06b6d4', flexShrink: 0 }} />
+                                            <span>{skill}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    {/* Contact Section */}
+                    <section id="contact" style={{
+                        padding: '8rem 2rem',
+                        background: 'rgba(15, 21, 53, 0.5)',
+                        position: 'relative',
+                        zIndex: 1
+                    }}>
+                        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+                            <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                                <h2 style={{
+                                    fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+                                    fontWeight: '700',
+                                    marginBottom: '1rem'
+                                }}>
+                                    Ready to Modernize Your Infrastructure?
+                                </h2>
+                                <p style={{ color: '#94a3b8', fontSize: '1.125rem', maxWidth: '700px', margin: '0 auto' }}>
+                                    Whether you need a full Microsoft 365 migration, a security audit, or just a reliable technical partner, I'm here to help.
+                                </p>
+                            </div>
+                            
+                            <form onSubmit={handleSubmit} style={{
+                                background: 'rgba(30, 58, 138, 0.1)',
+                                border: '1px solid rgba(6, 182, 212, 0.3)',
+                                borderRadius: '16px',
+                                padding: '3rem'
+                            }}>
+                                <div style={{ marginBottom: '1.5rem' }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', color: '#e8edf4', fontWeight: '600' }}>
+                                        Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        required
+                                        value={formData.name}
+                                        onChange={(e) => setFormData({...formData, name: e.target.value})}
+                                        placeholder="Your name"
+                                    />
+                                </div>
+                                
+                                <div style={{ marginBottom: '1.5rem' }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', color: '#e8edf4', fontWeight: '600' }}>
+                                        Email
+                                    </label>
+                                    <input
+                                        type="email"
+                                        required
+                                        value={formData.email}
+                                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                                        placeholder="your.email@company.com"
+                                    />
+                                </div>
+                                
+                                <div style={{ marginBottom: '2rem' }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', color: '#e8edf4', fontWeight: '600' }}>
+                                        Message
+                                    </label>
+                                    <textarea
+                                        required
+                                        rows={6}
+                                        value={formData.message}
+                                        onChange={(e) => setFormData({...formData, message: e.target.value})}
+                                        placeholder="Tell me about your project or IT needs..."
+                                    />
+                                </div>
+                                
+                                <button type="submit" className="btn-primary" style={{ width: '100%' }}>
+                                    Let's Talk Strategy
+                                </button>
+                            </form>
+                            
+                            <div style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                gap: '3rem',
+                                marginTop: '3rem',
+                                flexWrap: 'wrap'
+                            }}>
+                                <div style={{ textAlign: 'center' }}>
+                                    <Icon name="mail" size={24} style={{ color: '#06b6d4', marginBottom: '0.5rem' }} />
+                                    <div style={{ color: '#94a3b8', fontSize: '0.875rem' }}>Email</div>
+                                    <div style={{ fontWeight: '600', marginTop: '0.25rem' }}>contact@aalbertsberg.us</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    {/* Footer */}
+                    <footer style={{
+                        padding: '3rem 2rem',
+                        borderTop: '1px solid rgba(6, 182, 212, 0.2)',
+                        textAlign: 'center',
+                        position: 'relative',
+                        zIndex: 1
+                    }}>
+                        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '0.75rem',
+                                marginBottom: '1rem'
+                            }}>
+                                <img src="logo.svg" alt="Double-A Solutions" style={{ width: '32px', height: '32px' }} />
+                                <span style={{ fontSize: '1.25rem', fontWeight: '700' }}>Double-A Solutions</span>
+                            </div>
+                            <p style={{ color: '#94a3b8', fontSize: '0.875rem' }}>
+                                © 2026 Double-A Solutions. Expert IT Consulting & Solutions.
+                            </p>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+        
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<DoubleASolutions />);
+    </script>
+</body>
+</html>
