@@ -4,12 +4,42 @@ import { Mail, Phone, Code, Database, Cloud, Zap, CheckCircle, ArrowRight, Menu,
 const DoubleASolutions = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [formStatus, setFormStatus] = useState(''); // 'submitting', 'success', 'error'
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus('submitting');
+    
+    const form = e.target;
+    const data = new FormData(form);
+    
+    try {
+      const response = await fetch('https://formspree.io/f/mbdaajzd', {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        setFormStatus('success');
+        form.reset();
+        // Reset success message after 5 seconds
+        setTimeout(() => setFormStatus(''), 5000);
+      } else {
+        setFormStatus('error');
+      }
+    } catch (error) {
+      setFormStatus('error');
+    }
+  };
 
   return (
     <div style={{ 
@@ -809,12 +839,40 @@ const DoubleASolutions = () => {
             </p>
           </div>
 
-          <form action="https://formspree.io/f/mbdaajzd" method="POST" style={{
+          <form onSubmit={handleSubmit} style={{
             background: 'rgba(30, 58, 138, 0.1)',
             border: '1px solid rgba(6, 182, 212, 0.3)',
             borderRadius: '16px',
             padding: '3rem'
           }}>
+            {formStatus === 'success' && (
+              <div style={{
+                background: 'rgba(6, 182, 212, 0.1)',
+                border: '1px solid #06b6d4',
+                borderRadius: '8px',
+                padding: '1rem',
+                marginBottom: '1.5rem',
+                color: '#06b6d4',
+                textAlign: 'center'
+              }}>
+                ✓ Thanks! I'll get back to you soon.
+              </div>
+            )}
+            
+            {formStatus === 'error' && (
+              <div style={{
+                background: 'rgba(239, 68, 68, 0.1)',
+                border: '1px solid #ef4444',
+                borderRadius: '8px',
+                padding: '1rem',
+                marginBottom: '1.5rem',
+                color: '#ef4444',
+                textAlign: 'center'
+              }}>
+                Oops! Something went wrong. Please try again.
+              </div>
+            )}
+            
             <div style={{ marginBottom: '1.5rem' }}>
               <label style={{ display: 'block', marginBottom: '0.5rem', color: '#e8edf4', fontWeight: '600' }}>
                 Name
@@ -851,8 +909,8 @@ const DoubleASolutions = () => {
               />
             </div>
 
-            <button type="submit" className="btn-primary" style={{ width: '100%' }}>
-              Let's Make IT Work
+            <button type="submit" className="btn-primary" style={{ width: '100%' }} disabled={formStatus === 'submitting'}>
+              {formStatus === 'submitting' ? 'Sending...' : "Let's Make IT Work"}
             </button>
           </form>
 
