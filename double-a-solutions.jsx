@@ -4,19 +4,12 @@ import { Mail, Phone, Code, Database, Cloud, Zap, CheckCircle, ArrowRight, Menu,
 const DoubleASolutions = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert('Form submitted! In production, this would send to your email.');
-    setFormData({ name: '', email: '', message: '' });
-  };
 
   return (
     <div style={{ 
@@ -816,7 +809,7 @@ const DoubleASolutions = () => {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} style={{
+          <form action="https://formspree.io/f/mbdaajzd" method="POST" style={{
             background: 'rgba(30, 58, 138, 0.1)',
             border: '1px solid rgba(6, 182, 212, 0.3)',
             borderRadius: '16px',
@@ -828,9 +821,8 @@ const DoubleASolutions = () => {
               </label>
               <input
                 type="text"
+                name="name"
                 required
-                value={formData.name}
-                onChange={(e) => setFormData({...formData, name: e.target.value})}
                 placeholder="Your name"
               />
             </div>
@@ -841,9 +833,8 @@ const DoubleASolutions = () => {
               </label>
               <input
                 type="email"
+                name="email"
                 required
-                value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
                 placeholder="your.email@company.com"
               />
             </div>
@@ -853,10 +844,9 @@ const DoubleASolutions = () => {
                 Message
               </label>
               <textarea
+                name="message"
                 required
                 rows={6}
-                value={formData.message}
-                onChange={(e) => setFormData({...formData, message: e.target.value})}
                 placeholder="Tell me about your project or infrastructure needs..."
               />
             </div>
