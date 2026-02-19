@@ -403,7 +403,7 @@ const DoubleASolutions = () => {
             WebkitTextFillColor: 'transparent',
             padding: '0 1rem'
           }}>
-            Microsoft 365.<br/>Security.<br/>Solutions.
+            IT That Actually Works.
           </h1>
           
           <p style={{
@@ -415,7 +415,7 @@ const DoubleASolutions = () => {
             margin: '0 auto 2rem',
             padding: '0 1.5rem'
           }}>
-            Expert IT consulting for Microsoft 365, security, email systems, and infrastructure. From strategy to implementation, I deliver reliable solutions for your business.
+            Your technical partner for security, infrastructure, and strategic IT planning. I help businesses navigate technology decisions with confidence and build systems that are reliable, secure, and built to last.
           </p>
           
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
