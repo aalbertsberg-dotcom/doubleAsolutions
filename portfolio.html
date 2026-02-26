@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Double-A Solutions</title>
+    <meta name="description" content="Websites and solutions built by Double-A Solutions. Professional web development and IT consulting.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Outfit', 'Segoe UI', sans-serif;
+            background: #0a0e27;
+            color: #e8edf4;
+            overflow-x: hidden;
+        }
+        
+        .tech-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(6, 182, 212, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+            padding: 1.5rem 2rem;
+            z-index: 100;
+        }
+        
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: #e8edf4;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .company-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .back-link {
+            color: #06b6d4;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border: 1px solid #06b6d4;
+            border-radius: 5px;
+        }
+        
+        .back-link:hover {
+            background: rgba(6, 182, 212, 0.1);
+            transform: translateX(-3px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero {
+            padding: 150px 2rem 80px 2rem;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #e8edf4, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin-bottom: 3rem;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0 5rem 0;
+        }
+        
+        .project-card {
+            background: rgba(30, 58, 138, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: #06b6d4;
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(30, 58, 138, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #06b6d4;
+            border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+        }
+        
+        .project-content {
+            padding: 2rem;
+        }
+        
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #e8edf4;
+        }
+        
+        .project-type {
+            color: #06b6d4;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+        
+        .project-description {
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-link {
+            color: #06b6d4;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+        
+        .project-link:hover {
+            gap: 0.75rem;
+            color: #0284c7;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(6, 182, 212, 0.2);
+            color: #94a3b8;
+        }
+        
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                padding: 120px 1rem 60px 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tech-grid"></div>
+    
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo-container">
+                <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="navGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#0c1e47;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M 100 20 L 170 60 L 170 140 L 100 180 L 30 140 L 30 60 Z" 
+                          fill="url(#navGrad)" 
+                          stroke="#06b6d4" 
+                          stroke-width="3" />
+                    <path d="M 100 35 L 155 65 L 155 135 L 100 165 L 45 135 L 45 65 Z" 
+                          fill="none" 
+                          stroke="#06b6d4" 
+                          stroke-width="1" 
+                          opacity="0.3" />
+                    <text x="100" y="120" 
+                          font-family="Arial, sans-serif" 
+                          font-size="70" 
+                          font-weight="bold" 
+                          fill="#06b6d4" 
+                          text-anchor="middle">AA</text>
+                    <circle cx="100" cy="20" r="4" fill="#06b6d4" />
+                    <circle cx="170" cy="60" r="4" fill="#06b6d4" />
+                    <circle cx="170" cy="140" r="4" fill="#06b6d4" />
+                </svg>
+                <span class="company-name">Double-A Solutions</span>
+            </a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </nav>
+    
+    <div class="hero">
+        <div class="container">
+            <h1>Satisfied Clients</h1>
+            <p class="subtitle">Websites & Solutions Built with Care</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="projects-grid">
+            
+            <!-- Cedar Ridge LLC -->
+            <div class="project-card" onclick="window.open('https://cedarridgellc.com', '_blank')">
+                <div class="project-image">🔥</div>
+                <div class="project-content">
+                    <div class="project-type">Wildland Fire Services</div>
+                    <h3 class="project-title">Cedar Ridge LLC</h3>
+                    <p class="project-description">
+                        Professional website for a wildland fire engine company, featuring their firefighting operations and new FireWise services. Complete with service pages, contact forms, and responsive design.
+                    </p>
+                    <a href="https://cedarridgellc.com" target="_blank" class="project-link">
+                        Visit Site →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- COg Creations -->
+            <div class="project-card" onclick="window.open('https://cog-creations.com', '_blank')">
+                <div class="project-image">🎨</div>
+                <div class="project-content">
+                    <div class="project-type">Nonprofit Organization</div>
+                    <h3 class="project-title">COg Creations</h3>
+                    <p class="project-description">
+                        Modern website for a nonprofit organization focused on creative arts and community engagement. Features responsive design, mobile-optimized layout, and clean branding.
+                    </p>
+                    <a href="https://cog-creations.com" target="_blank" class="project-link">
+                        Visit Site →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Just Us Lounge -->
+            <div class="project-card" onclick="window.open('https://aalbertsberg-dotcom.github.io/just-us-lounge/', '_blank')">
+                <div class="project-image">🍸</div>
+                <div class="project-content">
+                    <div class="project-type">Hospitality & Events</div>
+                    <h3 class="project-title">Just Us Lounge</h3>
+                    <p class="project-description">
+                        Stylish website for an upscale lounge and event space. Modern design with event booking capabilities and atmosphere showcase.
+                    </p>
+                    <a href="https://aalbertsberg-dotcom.github.io/just-us-lounge/" target="_blank" class="project-link">
+                        Visit Site →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- BayTex -->
+            <div class="project-card" onclick="window.open('https://aalbertsberg-dotcom.github.io/BayTex/', '_blank')">
+                <div class="project-image">🏗️</div>
+                <div class="project-content">
+                    <div class="project-type">Construction & Services</div>
+                    <h3 class="project-title">BayTex</h3>
+                    <p class="project-description">
+                        Professional website for a construction and services company. Clean, professional design optimized for lead generation and service showcasing.
+                    </p>
+                    <a href="https://aalbertsberg-dotcom.github.io/BayTex/" target="_blank" class="project-link">
+                        Visit Site →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Cozy's Cookies -->
+            <div class="project-card" onclick="window.open('https://aalbertsberg-dotcom.github.io/cozyscookies/', '_blank')">
+                <div class="project-image">🍪</div>
+                <div class="project-content">
+                    <div class="project-type">Food & Retail</div>
+                    <h3 class="project-title">Cozy's Cookies</h3>
+                    <p class="project-description">
+                        Warm and inviting website for a local cookie business. Features product showcase, online ordering capabilities, and custom branding.
+                    </p>
+                    <a href="https://aalbertsberg-dotcom.github.io/cozyscookies/" target="_blank" class="project-link">
+                        Visit Site →
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2026 Double-A Solutions | Expert IT Consulting & Web Development</p>
+        <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+            <a href="index.html" style="color: #06b6d4; text-decoration: none;">← Back to Home</a>
+        </p>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulting Services Agreement - Double-A Solutions</title>
+    <style>
+        @media print {
+            body { margin: 0.5in; }
+            .no-print { display: none; }
+            input, textarea { border: none; border-bottom: 1px solid #000; }
+        }
+        
+        body { 
+            font-family: 'Arial', sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            max-width: 8.5in;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .header { 
+            text-align: center; 
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #06b6d4;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .logo { 
+            width: 60px; 
+            height: 60px;
+        }
+        
+        .company-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1e3a8a;
+        }
+        
+        h1 { 
+            font-size: 24px; 
+            text-transform: uppercase; 
+            color: #1e3a8a;
+            margin: 10px 0;
+        }
+        
+        h3 { 
+            font-size: 16px; 
+            margin-top: 25px; 
+            margin-bottom: 10px;
+            color: #1e3a8a;
+            text-transform: uppercase;
+            border-bottom: 2px solid #06b6d4;
+            padding-bottom: 5px;
+        }
+        
+        .section { 
+            margin-bottom: 20px; 
+        }
+        
+        .field {
+            display: inline-block;
+            min-width: 200px;
+            border-bottom: 1px solid #333;
+            padding: 2px 5px;
+        }
+        
+        .field-block {
+            display: block;
+            width: 100%;
+            border-bottom: 1px solid #333;
+            padding: 2px 5px;
+            margin: 5px 0;
+        }
+        
+        .signature-table { 
+            width: 100%; 
+            margin-top: 60px;
+            page-break-inside: avoid;
+        }
+        
+        .signature-cell {
+            width: 45%;
+            padding: 10px;
+            vertical-align: top;
+        }
+        
+        .signature-line { 
+            border-top: 2px solid #000; 
+            margin-top: 50px;
+            padding-top: 5px;
+            font-weight: bold;
+        }
+        
+        .date-line {
+            border-top: 1px solid #000;
+            margin-top: 30px;
+            padding-top: 5px;
+            width: 150px;
+        }
+        
+        p { 
+            margin: 10px 0; 
+            text-align: justify;
+        }
+        
+        .contact-info {
+            background: #f0f9ff;
+            padding: 15px;
+            border-left: 4px solid #06b6d4;
+            margin: 20px 0;
+        }
+        
+        .subsection {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            background: #06b6d4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background: #0284c7;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="print-button no-print" onclick="window.print()">Print / Save as PDF</button>
+
+    <div class="header">
+        <div class="logo-container">
+            <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#0c1e47;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path d="M 100 20 L 170 60 L 170 140 L 100 180 L 30 140 L 30 60 Z" 
+                      fill="url(#logoGrad)" 
+                      stroke="#06b6d4" 
+                      stroke-width="3" />
+                <path d="M 100 35 L 155 65 L 155 135 L 100 165 L 45 135 L 45 65 Z" 
+                      fill="none" 
+                      stroke="#06b6d4" 
+                      stroke-width="1" 
+                      opacity="0.3" />
+                <text x="100" y="120" 
+                      font-family="Arial, sans-serif" 
+                      font-size="70" 
+                      font-weight="bold" 
+                      fill="#06b6d4" 
+                      text-anchor="middle">AA</text>
+                <circle cx="100" cy="20" r="4" fill="#06b6d4" />
+                <circle cx="170" cy="60" r="4" fill="#06b6d4" />
+                <circle cx="170" cy="140" r="4" fill="#06b6d4" />
+            </svg>
+            <div class="company-name">Double-A Solutions</div>
+        </div>
+        <h1>Consulting Services Agreement</h1>
+    </div>
+
+    <p><strong>EFFECTIVE DATE:</strong> <span class="field" contenteditable="true">__________________</span>, 20<span class="field" contenteditable="true" style="min-width: 50px;">____</span></p>
+
+    <div class="section">
+        <h3>Parties</h3>
+        <div class="contact-info">
+            <p><strong>CONSULTANT:</strong> Double-A Solutions<br>
+            Andrew Aalbertsberg<br>
+            Website: <a href="https://aalbertsberg.us">https://aalbertsberg.us</a><br>
+            Email: contact@aalbertsberg.us</p>
+        </div>
+        
+        <p><strong>CLIENT:</strong> <span class="field-block" contenteditable="true">________________________________________________</span></p>
+        <p><strong>Address:</strong> <span class="field-block" contenteditable="true">________________________________________________</span></p>
+        <p><strong>Email:</strong> <span class="field" contenteditable="true">________________________________________________</span></p>
+        <p><strong>Phone:</strong> <span class="field" contenteditable="true">________________________________________________</span></p>
+    </div>
+
+    <hr style="margin: 30px 0; border: 1px solid #06b6d4;">
+
+    <h3>1. Services</h3>
+    <p>Consultant agrees to provide the following information technology consulting services ("Services"):</p>
+    <p class="field-block" contenteditable="true" style="min-height: 60px;">
+    ______________________________________________________________________________________
+    ______________________________________________________________________________________
+    ______________________________________________________________________________________
+    </p>
+
+    <h3>2. Compensation</h3>
+    <p>Client shall pay Consultant as follows:</p>
+    <div class="subsection">
+        <p><strong>Rate:</strong> $<span class="field" contenteditable="true" style="min-width: 100px;">________</span> per <span class="field" contenteditable="true" style="min-width: 100px;">________</span> (hour/project/month)</p>
+        <p><strong>Payment Terms:</strong> Invoices are due within <span class="field" contenteditable="true" style="min-width: 50px;">30</span> days of invoice date.</p>
+        <p><strong>Late Fees:</strong> A late fee of 1.5% per month (18% annually) will be applied to unpaid balances after the due date.</p>
+        <p><strong>Expenses:</strong> Client shall reimburse Consultant for reasonable, pre-approved out-of-pocket expenses with proper documentation.</p>
+    </div>
+
+    <h3>3. Term and Termination</h3>
+    <p>This Agreement shall commence on the Effective Date and continue until:</p>
+    <div class="subsection">
+        <p><strong>Project Completion:</strong> Upon completion of the Services described in Section 1, OR</p>
+        <p><strong>Termination by Either Party:</strong> Either party may terminate this Agreement with thirty (30) days written notice to the other party.</p>
+        <p><strong>Immediate Termination:</strong> Either party may terminate immediately for material breach by the other party after written notice and failure to cure within ten (10) days.</p>
+        <p><strong>Payment Upon Termination:</strong> Upon termination, Client shall pay Consultant for all Services performed and expenses incurred through the effective date of termination.</p>
+    </div>
+
+    <h3>4. Scope Changes</h3>
+    <p>Any changes to the scope of Services described in Section 1 must be agreed upon in writing by both parties and may result in adjusted fees and timelines. Additional services not specified in Section 1 will require a separate written agreement or change order.</p>
+
+    <h3>5. Confidentiality</h3>
+    <p>Consultant agrees to maintain the confidentiality of all proprietary and confidential information disclosed by Client ("Confidential Information"). Consultant will not disclose such information to third parties without Client's prior written consent. This obligation shall survive termination of this Agreement for a period of three (3) years.</p>
+    <p>Confidential Information does not include information that: (a) is or becomes publicly available through no breach of this Agreement; (b) is rightfully received by Consultant from a third party; (c) is independently developed by Consultant; or (d) is required to be disclosed by law.</p>
+
+    <h3>6. Intellectual Property</h3>
+    <p><strong>Work Product:</strong> Upon full payment of all fees, all custom work product created specifically for Client under this Agreement shall be owned by Client, including but not limited to custom scripts, documentation, configurations, and deliverables created solely for Client's use.</p>
+    <p><strong>Pre-Existing Materials:</strong> Consultant retains all rights to pre-existing tools, methodologies, templates, and general knowledge. Client receives a non-exclusive license to use any pre-existing materials incorporated into the work product.</p>
+    <p><strong>Third-Party Materials:</strong> Any third-party software, tools, or materials used remain the property of their respective owners.</p>
+
+    <h3>7. Independent Contractor</h3>
+    <p>Consultant is an independent contractor and not an employee, agent, or partner of Client. Consultant is responsible for all taxes, insurance, and benefits. Consultant retains the right to control the manner and means of performing the Services, subject to the specifications and requirements of this Agreement.</p>
+
+    <h3>8. Warranties and Disclaimers</h3>
+    <p><strong>Consultant Warranties:</strong> Consultant warrants that Services will be performed in a professional and workmanlike manner consistent with industry standards.</p>
+    <p><strong>DISCLAIMER:</strong> EXCEPT AS EXPRESSLY PROVIDED ABOVE, SERVICES ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. CONSULTANT DOES NOT GUARANTEE SPECIFIC RESULTS OR OUTCOMES.</p>
+
+    <h3>9. Limitation of Liability</h3>
+    <p><strong>MAXIMUM LIABILITY:</strong> IN NO EVENT SHALL CONSULTANT'S TOTAL LIABILITY TO CLIENT FOR ANY CLAIMS ARISING OUT OF OR RELATED TO THIS AGREEMENT EXCEED THE TOTAL FEES PAID BY CLIENT TO CONSULTANT IN THE TWELVE (12) MONTHS PRECEDING THE CLAIM.</p>
+    <p><strong>EXCLUDED DAMAGES:</strong> IN NO EVENT SHALL CONSULTANT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, LOSS OF DATA, OR BUSINESS INTERRUPTION, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+    <p><strong>Client Responsibility:</strong> Client is responsible for maintaining appropriate backups of all data and systems. Consultant is not responsible for data loss or system failures outside Consultant's direct control.</p>
+
+    <h3>10. Indemnification</h3>
+    <p>Each party shall indemnify and hold harmless the other party from any claims, damages, or expenses arising from: (a) breach of this Agreement by the indemnifying party; (b) negligence or willful misconduct of the indemnifying party; or (c) infringement of third-party intellectual property rights by materials provided by the indemnifying party.</p>
+
+    <h3>11. Governing Law and Dispute Resolution</h3>
+    <p><strong>Governing Law:</strong> This Agreement shall be governed by and construed in accordance with the laws of the State of Mississippi, without regard to its conflict of law provisions.</p>
+    <p><strong>Dispute Resolution:</strong> Any dispute arising out of this Agreement shall first be attempted to be resolved through good faith negotiation. If negotiation fails, disputes may be submitted to mediation before pursuing litigation.</p>
+    <p><strong>Venue:</strong> Any legal action shall be brought in the state or federal courts located in Mississippi.</p>
+
+    <h3>12. General Provisions</h3>
+    <div class="subsection">
+        <p><strong>Entire Agreement:</strong> This Agreement constitutes the entire agreement between the parties and supersedes all prior agreements and understandings, whether written or oral.</p>
+        <p><strong>Amendments:</strong> This Agreement may only be amended in writing signed by both parties.</p>
+        <p><strong>Severability:</strong> If any provision is found invalid or unenforceable, the remaining provisions shall remain in full force and effect.</p>
+        <p><strong>Waiver:</strong> No waiver of any provision shall constitute a waiver of any other provision or any subsequent waiver of the same provision.</p>
+        <p><strong>Assignment:</strong> Neither party may assign this Agreement without the prior written consent of the other party, except that Consultant may assign to a successor entity in the event of a merger or acquisition.</p>
+        <p><strong>Notices:</strong> All notices shall be in writing and sent to the addresses listed above or as subsequently provided in writing.</p>
+        <p><strong>Force Majeure:</strong> Neither party shall be liable for delays or failures in performance resulting from circumstances beyond their reasonable control.</p>
+    </div>
+
+    <h3>13. Acknowledgment</h3>
+    <p>By signing below, both parties acknowledge that they have read, understood, and agree to be bound by the terms and conditions of this Agreement.</p>
+
+    <table class="signature-table">
+        <tr>
+            <td class="signature-cell">
+                <strong>CONSULTANT</strong><br>
+                Double-A Solutions<br><br>
+                <div class="signature-line">Andrew Aalbertsberg</div>
+                <div class="date-line">Date: _______________</div>
+            </td>
+            <td style="width: 10%;"></td>
+            <td class="signature-cell">
+                <strong>CLIENT</strong><br><br><br>
+                <div class="signature-line">Signature</div>
+                <div style="margin-top: 10px;">
+                    <span class="field" contenteditable="true" style="min-width: 250px;">Print Name: _______________________</span>
+                </div>
+                <div style="margin-top: 10px;">
+                    <span class="field" contenteditable="true" style="min-width: 250px;">Title: _____________________________</span>
+                </div>
+                <div class="date-line">Date: _______________</div>
+            </td>
+        </tr>
+    </table>
+
+    <div style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #ccc; color: #666; font-size: 12px;">
+        <p>Double-A Solutions | https://aalbertsberg.us | contact@aalbertsberg.us</p>
+        <p style="font-style: italic;">This agreement is legally binding. Both parties should retain a signed copy for their records.</p>
+    </div>
+
+</body>
+</html>

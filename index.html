@@ -723,7 +723,35 @@
                                             borderRadius: '8px'
                                         }}>
                                             <Icon name="check-circle" size={20} style={{ color: '#06b6d4', flexShrink: 0 }} />
-                                            <span>{skill}</span>
+                                            {skill === 'Website Design & Development' ? (
+                                                <a href="portfolio.html" style={{
+                                                    color: '#e8edf4',
+                                                    textDecoration: 'none',
+                                                    position: 'relative',
+                                                    transition: 'color 0.3s'
+                                                }}
+                                                onMouseEnter={(e) => {
+                                                    e.target.style.color = '#06b6d4';
+                                                    e.target.querySelector('.hover-indicator').style.opacity = '1';
+                                                }}
+                                                onMouseLeave={(e) => {
+                                                    e.target.style.color = '#e8edf4';
+                                                    e.target.querySelector('.hover-indicator').style.opacity = '0';
+                                                }}>
+                                                    {skill}
+                                                    <span className="hover-indicator" style={{
+                                                        marginLeft: '8px',
+                                                        fontSize: '0.75rem',
+                                                        opacity: 0,
+                                                        transition: 'opacity 0.3s',
+                                                        color: '#06b6d4'
+                                                    }}>
+                                                        ↗
+                                                    </span>
+                                                </a>
+                                            ) : (
+                                                <span>{skill}</span>
+                                            )}
                                         </div>
                                     ))}
                                 </div>
