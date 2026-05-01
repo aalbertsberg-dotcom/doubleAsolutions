@@ -10,6 +10,19 @@
     <link rel="apple-touch-icon" sizes="180x180" href="cube-logo.png" />
     
     <style>
+        /* Logo transparency fix */
+        img[src*="cube-logo"],
+        img[alt*="cube logo"] {
+            mix-blend-mode: multiply;
+            background: transparent !important;
+        }
+        
+        .logo-container img {
+            background: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+        
         * {
             margin: 0;
             padding: 0;
