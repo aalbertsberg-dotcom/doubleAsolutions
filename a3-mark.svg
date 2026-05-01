@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="A cubed mark">
+  <defs>
+    <linearGradient id="a3g" x1="82" y1="72" x2="430" y2="438" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#0284c7"/>
+    </linearGradient>
+  </defs>
+  <rect x="46" y="46" width="420" height="420" rx="116" fill="#081026" stroke="rgba(34,211,238,0.78)" stroke-width="18"/>
+  <path d="M145 355 239 122h45l94 233h-50l-18-49H213l-18 49h-50Zm84-91h65l-32-87-33 87Z" fill="url(#a3g)"/>
+  <text x="342" y="196" font-family="Outfit, Arial, sans-serif" font-size="94" font-weight="800" fill="#e8edf4">3</text>
+</svg>
