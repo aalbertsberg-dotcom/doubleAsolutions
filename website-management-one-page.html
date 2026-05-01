@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Management Services - A³ Solutions</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="cube-logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="cube-logo.png" />
+    
+    <style>
+        @media print {
+            body { margin: 0.3in; font-size: 9pt; }
+            .no-print { display: none; }
+            a[href]:after { content: none !important; }
+            @page { size: letter; margin: 0; }
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.35;
+            color: #333;
+            background: #fff;
+            max-width: 8in;
+            margin: 0 auto;
+            padding: 0.3in;
+            font-size: 9.5pt;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #06b6d4;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+        
+        .logo { width: 32px; height: 32px; }
+        .company-name { font-size: 16px; font-weight: bold; color: #1e3a8a; }
+        h1 { font-size: 18px; color: #1e3a8a; margin-bottom: 2px; }
+        .tagline { color: #64748b; font-size: 10pt; }
+        
+        .intro {
+            background: #f0f9ff;
+            padding: 10px;
+            border-left: 3px solid #06b6d4;
+            margin-bottom: 12px;
+            font-size: 9pt;
+        }
+        
+        h2 {
+            color: #1e3a8a;
+            font-size: 12px;
+            margin: 12px 0 6px 0;
+            padding-bottom: 3px;
+            border-bottom: 2px solid #06b6d4;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .service-box {
+            background: #f8fafc;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .service-box h3 {
+            color: #06b6d4;
+            font-size: 10px;
+            margin-bottom: 3px;
+        }
+        
+        .service-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .service-box li {
+            padding: 1px 0 1px 12px;
+            position: relative;
+            font-size: 8pt;
+        }
+        
+        .service-box li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #06b6d4;
+            font-size: 8pt;
+        }
+        
+        .pricing-section {
+            background: linear-gradient(135deg, #1e3a8a, #06b6d4);
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        
+        .pricing-section h2 {
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+        
+        .pricing-tiers {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        
+        .tier {
+            background: rgba(255,255,255,0.12);
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .tier h3 { font-size: 11px; margin-bottom: 4px; }
+        .tier .price { font-size: 18px; font-weight: bold; margin: 4px 0; }
+        .tier .price-note { font-size: 7pt; opacity: 0.85; }
+        
+        .tier ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 6px;
+            font-size: 7.5pt;
+            text-align: left;
+        }
+        
+        .tier li {
+            padding: 1px 0 1px 10px;
+            position: relative;
+        }
+        
+        .tier li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-size: 7pt;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin: 10px 0;
+        }
+        
+        .benefit {
+            display: flex;
+            align-items: flex-start;
+            gap: 5px;
+            padding: 5px;
+            background: #f8fafc;
+            border-radius: 3px;
+        }
+        
+        .benefit-icon { font-size: 14px; min-width: 18px; }
+        .benefit-text strong {
+            display: block;
+            color: #1e3a8a;
+            margin-bottom: 1px;
+            font-size: 8.5pt;
+        }
+        .benefit-text { font-size: 7.5pt; }
+        
+        .cta-section {
+            text-align: center;
+            padding: 10px;
+            background: #f0f9ff;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+        
+        .cta-section h2 {
+            border: none;
+            margin-bottom: 6px;
+        }
+        
+        .cta-section p {
+            font-size: 9.5pt;
+            margin-bottom: 8px;
+            color: #64748b;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 9pt;
+            color: #1e3a8a;
+        }
+        
+        .contact-item strong { color: #06b6d4; }
+        
+        .footer {
+            text-align: center;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 7.5pt;
+            color: #64748b;
+        }
+        
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            background: #06b6d4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        
+        .print-button:hover { background: #0284c7; }
+    </style>
+</head>
+<body>
+
+    <button class="print-button no-print" onclick="window.print()">Print / Save as PDF</button>
+
+    <div class="header">
+        <div class="logo-container">
+            <img src="cube-logo.png" alt="A³ Solutions cube logo" class="logo" />
+            <div class="company-name">A³ Solutions</div>
+        </div>
+        <h1>Website Management Services</h1>
+        <p class="tagline">Keep Your Website Secure, Fast, and Up-to-Date</p>
+    </div>
+
+    <div class="intro">
+        <strong>Your website is live—now what?</strong> Websites need regular care to stay secure, fast, and functional. I handle all the technical details so you can focus on running your business.
+    </div>
+
+    <h2>What's Included</h2>
+    
+    <div class="services-grid">
+        <div class="service-box">
+            <h3>🔒 Security</h3>
+            <ul>
+                <li>Security patches</li>
+                <li>Software updates</li>
+                <li>Malware monitoring</li>
+            </ul>
+        </div>
+        
+        <div class="service-box">
+            <h3>📝 Content</h3>
+            <ul>
+                <li>Text/image changes</li>
+                <li>Hours & contact info</li>
+                <li>New pages added</li>
+            </ul>
+        </div>
+        
+        <div class="service-box">
+            <h3>⚡ Performance</h3>
+            <ul>
+                <li>Speed optimization</li>
+                <li>Uptime monitoring</li>
+                <li>Mobile testing</li>
+            </ul>
+        </div>
+        
+        <div class="service-box">
+            <h3>💾 Backups</h3>
+            <ul>
+                <li>Monthly backups</li>
+                <li>Disaster recovery</li>
+                <li>Quick restoration</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="pricing-section">
+        <h2>Transparent Pricing</h2>
+        <div class="pricing-tiers">
+            <div class="tier">
+                <h3>Basic</h3>
+                <div class="price">$99</div>
+                <div class="price-note">per month</div>
+                <ul>
+                    <li>Small sites (≤5 pages)</li>
+                    <li>2 updates/month</li>
+                    <li>Basic support</li>
+                </ul>
+            </div>
+            
+            <div class="tier" style="border-color: white; background: rgba(255,255,255,0.2);">
+                <h3>Professional ⭐</h3>
+                <div class="price">$199</div>
+                <div class="price-note">per month</div>
+                <ul>
+                    <li>Medium sites (≤15 pages)</li>
+                    <li>5 updates/month</li>
+                    <li>Priority support</li>
+                </ul>
+            </div>
+            
+            <div class="tier">
+                <h3>Premium</h3>
+                <div class="price">$349</div>
+                <div class="price-note">per month</div>
+                <ul>
+                    <li>Complex/e-commerce</li>
+                    <li>Unlimited updates</li>
+                    <li>24/7 support</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h2>Why Managed Maintenance?</h2>
+    
+    <div class="benefits-grid">
+        <div class="benefit">
+            <div class="benefit-icon">⏰</div>
+            <div class="benefit-text">
+                <strong>Save Time</strong>
+                Focus on your business, not website tasks
+            </div>
+        </div>
+        
+        <div class="benefit">
+            <div class="benefit-icon">🛡️</div>
+            <div class="benefit-text">
+                <strong>Stay Secure</strong>
+                Regular updates protect against threats
+            </div>
+        </div>
+        
+        <div class="benefit">
+            <div class="benefit-icon">💰</div>
+            <div class="benefit-text">
+                <strong>Predictable Costs</strong>
+                One flat rate, no surprise bills
+            </div>
+        </div>
+        
+        <div class="benefit">
+            <div class="benefit-icon">🚀</div>
+            <div class="benefit-text">
+                <strong>Keep It Fast</strong>
+                Ongoing optimization maintains speed
+            </div>
+        </div>
+        
+        <div class="benefit">
+            <div class="benefit-icon">📞</div>
+            <div class="benefit-text">
+                <strong>Direct Access</strong>
+                Work with the person who built your site
+            </div>
+        </div>
+        
+        <div class="benefit">
+            <div class="benefit-icon">✅</div>
+            <div class="benefit-text">
+                <strong>Peace of Mind</strong>
+                Know your site is monitored 24/7
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <h2>Ready to Get Started?</h2>
+        <p>Month-to-month agreement. No long-term contract. Cancel anytime.</p>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <strong>Email:</strong> contact@aalbertsberg.us
+            </div>
+            <div class="contact-item">
+                <strong>Web:</strong> aalbertsberg.us
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>A³ Solutions</strong> | Expert IT Consulting & Web Development</p>
+        <p style="margin-top: 6px; font-style: italic;">Custom packages available. Pricing may vary based on site complexity.</p>
+    </div>
+
+</body>
+</html>
