@@ -10,13 +10,24 @@
     <link rel="icon" type="image/png" href="cube-logo.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="cube-logo.png" />
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="logo.svg">
-    
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
+        /* Logo transparency fix */
+        img[src*="cube-logo"],
+        img[alt*="cube logo"] {
+            mix-blend-mode: multiply;
+            background: transparent !important;
+        }
+        
+        .logo-container img,
+        .logo {
+            background: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+        
         * {
             margin: 0;
             padding: 0;

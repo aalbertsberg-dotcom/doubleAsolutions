@@ -23,6 +23,23 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
+    /* Logo transparency fix */
+    img[src*="cube-logo"],
+    img[src*="a3-mark"],
+    img[alt*="cube logo"],
+    img[alt*="A³ Solutions logo"] {
+      mix-blend-mode: multiply;
+      background: transparent !important;
+    }
+    
+    .logo-container img,
+    nav img,
+    header img {
+      background: transparent !important;
+      box-shadow: none !important;
+      border: none !important;
+    }
+    
     :root {
       --bg: #070b1f;
       --bg-2: #0a0e27;
