@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Under Construction | A³ Solutions</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy-deep:  #060e22;
+      --navy-mid:   #0c1e47;
+      --navy-light: #1e3a8a;
+      --cyan:       #06b6d4;
+      --cyan-dim:   rgba(6,182,212,.18);
+      --white:      #e8f0fe;
+      --muted:      #6b84b8;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background-color: var(--navy-deep);
+      color: var(--white);
+      font-family: 'Sora', sans-serif;
+      font-weight: 300;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ── Grid background ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--cyan-dim) 1px, transparent 1px),
+        linear-gradient(90deg, var(--cyan-dim) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Glow blobs ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 40% at 20% 30%, rgba(30,58,138,.55), transparent),
+        radial-gradient(ellipse 40% 35% at 80% 70%, rgba(6,182,212,.12), transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Animated hex ring decoration ── */
+    .hex-ring {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border: 1px solid rgba(6,182,212,.08);
+      clip-path: polygon(50% 0%, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: spin 40s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hex-ring:nth-child(2) {
+      width: 820px;
+      height: 820px;
+      border-color: rgba(6,182,212,.05);
+      animation-duration: 60s;
+      animation-direction: reverse;
+    }
+
+    @keyframes spin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* ── Main card ── */
+    main {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      text-align: center;
+      padding: 0 1.5rem;
+      animation: fadeUp .9s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Logo ── */
+    .logo {
+      width: 110px;
+      height: 110px;
+      margin-bottom: 2.2rem;
+      filter: drop-shadow(0 0 18px rgba(6,182,212,.45));
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { filter: drop-shadow(0 0 18px rgba(6,182,212,.45)); }
+      50%       { filter: drop-shadow(0 0 32px rgba(6,182,212,.75)); }
+    }
+
+    /* ── Status badge ── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      background: var(--cyan-dim);
+      border: 1px solid rgba(6,182,212,.35);
+      padding: .35rem .9rem;
+      border-radius: 2px;
+      margin-bottom: 1.6rem;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--cyan);
+      border-radius: 50%;
+      animation: blink 1.4s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .2; }
+    }
+
+    /* ── Headline ── */
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 9vw, 5.5rem);
+      letter-spacing: .04em;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+    }
+
+    h1 span {
+      color: var(--cyan);
+    }
+
+    /* ── Sub copy ── */
+    p {
+      font-size: clamp(.9rem, 2vw, 1.05rem);
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 520px;
+      margin-bottom: 2rem;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      margin-bottom: 2rem;
+    }
+
+    /* ── Coming Soon Box ── */
+    .coming-soon {
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      padding: 1.5rem;
+      background: rgba(6,182,212,.08);
+      border: 1px solid rgba(6,182,212,.2);
+      border-radius: 4px;
+      border-left: 3px solid var(--cyan);
+    }
+
+    .coming-soon h3 {
+      color: var(--cyan);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: .75rem;
+      letter-spacing: .02em;
+    }
+
+    .coming-soon p {
+      font-size: .92rem;
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    /* ── Home Button ── */
+    .home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 1.5rem;
+      background: linear-gradient(135deg, var(--cyan), #0284c7);
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: .95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(6,182,212,.3);
+      margin-bottom: 2rem;
+    }
+
+    .home-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(6,182,212,.4);
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      padding: 1rem 1.5rem;
+      background: linear-gradient(to top, rgba(6,14,34,.95), transparent);
+      font-size: .78rem;
+      color: var(--muted);
+      letter-spacing: .04em;
+    }
+
+    footer .footer-logo {
+      width: 22px;
+      height: 22px;
+      filter: drop-shadow(0 0 4px rgba(6,182,212,.5));
+    }
+
+    footer .brand {
+      color: var(--cyan);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Decorative rings -->
+  <div class="hex-ring"></div>
+  <div class="hex-ring"></div>
+
+  <main>
+
+    <!-- Logo -->
+    <img src="logo.png" alt="A³ Solutions Logo" class="logo" />
+
+    <!-- Status badge -->
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Under Construction
+    </div>
+
+    <!-- Headline -->
+    <h1>Portfolio<br /><span>Coming Soon</span></h1>
+
+    <div class="divider"></div>
+
+    <!-- Message -->
+    <p>We're building out our portfolio showcase to highlight the IT infrastructure, 
+       automation projects, and Microsoft 365 solutions we've delivered for clients.</p>
+
+    <!-- What's Coming -->
+    <div class="coming-soon">
+      <h3>📊 What's Coming:</h3>
+      <p>Case studies from real client engagements including infrastructure strategy, 
+         cloud migrations, automation solutions, and security implementations.</p>
+    </div>
+
+    <!-- Home Button -->
+    <a href="index.html" class="home-btn">← Back to Home</a>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <img src="logo.png" alt="A³ Solutions" class="footer-logo" />
+    <span class="brand">A³ Solutions</span>
+    <span>·</span>
+    <span>Architecture. Automation. Authority.</span>
+  </footer>
+
+</body>
+</html>

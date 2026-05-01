@@ -23,21 +23,6 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
-    /* Logo transparency fix */
-    img[src*="logo.png"],
-    img[src*="logo"],
-    img[alt*="logo"],
-    img[alt*="A³ Solutions logo"] {
-      mix-blend-mode: multiply;
-      background: transparent !important;
-    }
-    
-    .logo-container img,
-    nav img,
-    header img {
-      background: transparent !important;
-      box-shadow: none !important;
-      border: none !important;
     }
     
     :root {
@@ -1009,6 +994,7 @@
                 <a href="#services" className="nav-link">Services</a>
                 <a href="#about" className="nav-link">About</a>
                 <a href="#contact" className="nav-link">Contact</a>
+                <a href="under-construction.html" className="nav-link">Portfolio</a>
                 <a href="#contact" className="nav-cta">Let’s Make IT Work</a>
               </div>
 
@@ -1026,6 +1012,7 @@
             <a href="#services" onClick={() => scrollTo("services")}>Services</a>
             <a href="#about" onClick={() => scrollTo("about")}>About</a>
             <a href="#contact" onClick={() => scrollTo("contact")}>Contact</a>
+            <a href="under-construction.html">Portfolio</a>
             <a href="#contact" onClick={() => scrollTo("contact")}>Let’s Make IT Work</a>
           </div>
 
@@ -1164,13 +1151,7 @@
                         {skills.map((skill, index) => (
                           <div className="skill-item" key={index}>
                             <Icon name="check-circle-2" size={18} />
-                            {skill === "Infrastructure Strategy" ? (
-                              <a className="portfolio-link" href="portfolio.html">
-                                {skill} <span style={{ color: "#22d3ee" }}>↗</span>
-                              </a>
-                            ) : (
-                              <span>{skill}</span>
-                            )}
+                            <span>{skill}</span>
                           </div>
                         ))}
                       </div>
